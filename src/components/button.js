@@ -1,5 +1,5 @@
-import { animation, button } from '../variables';
-import { typoButton, shadow, focusShadow } from '../common';
+import { animation, button, typography } from '../variables';
+import { shadow, focusShadow } from '../common';
 
 const buttonComponent = {};
 
@@ -8,24 +8,28 @@ buttonComponent.default = {
   border: 'none',
   borderRadius: button.dimensions.borderRadius,
   color: button.colors.secondaryColor,
-  position: 'relative',
+  cursor: 'pointer',
+  display: 'inline-block',
+  fontFamily: typography.preferredFont,
+  fontSize: '14px',
+  fontWeight: 500,
   height: button.dimensions.height,
+  lineHeight: button.dimensions.height,
+  letterSpacing: 0,
   margin: 0,
   minWidth: button.dimensions.minWidth,
-  padding: `0 ${button.dimensions.padding}`,
-  display: 'inline-block',
-  ...typoButton(),
+  outline: 'none',
   overflow: 'hidden',
-  willChange: 'box-shadow',
+  padding: `0 ${button.dimensions.padding}`,
+  position: 'relative',
+  textAlign: 'center',
+  textDecoration: 'none',
+  textTransform: 'uppercase',
   transition: `box-shadow 0.2s ${animation.curveFastOutLinearIn},
                background-color 0.2s ${animation.curveFastOutLinearIn},
                color 0.2s ${animation.curveDefault}`,
-  outline: 'none',
-  cursor: 'pointer',
-  textDecoration: 'none',
-  textAlign: 'center',
-  lineHeight: button.dimensions.height,
   verticalAlign: 'middle',
+  willChange: 'box-shadow',
 
   '-moz-focus-inner': {
     border: 0,

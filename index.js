@@ -95,7 +95,7 @@ const animation = {
 };
 animation.curveDefault = animation.curveFastOutSlowIn;
 
-const button$1 = {
+const button = {
   dimensions: {
     minWidth: '64px',
     height: '36px',
@@ -156,15 +156,131 @@ const shadows = {
   ambientShadowOpacity: 0.12
 };
 
-const typoButton = (colorContrast = false, usePreferred = true) => ({
-  fontFamily: usePreferred ? typography.preferredFont : 'inherit',
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+const base = {};
+
+base.html = {
+  fontFamily: typography.preferredFont,
   fontSize: '14px',
-  fontWeight: 500,
-  textTransform: 'uppercase',
+  fontWeight: '400',
+  lineHeight: '20px'
+};
+
+base.heading = (level = 1) => {
+  let heading = {
+    margin: '24px 0 24px 0',
+    padding: 0
+  };
+
+  switch (level) {
+    case 1:
+      heading = _extends({}, heading, {
+        fontSize: '56px',
+        fontWeight: 400,
+        lineHeight: 1.35,
+        letterSpacing: '-0.02em'
+      });
+      break;
+    case 2:
+      heading = _extends({}, heading, {
+        fontSize: '45px',
+        fontWeight: 400,
+        lineHeight: '48px'
+      });
+      break;
+    case 3:
+      heading = _extends({}, heading, {
+        fontSize: '34px',
+        fontWeight: 400,
+        lineHeight: '40px'
+      });
+      break;
+    case 4:
+      heading = _extends({}, heading, {
+        fontSize: '112px',
+        fontWeight: 300,
+        lineHeight: 1,
+        letterSpacing: '-0.04em'
+      });
+      break;
+    case 5:
+      heading = _extends({}, heading, {
+        fontSize: '20px',
+        fontWeight: 500,
+        lineHeight: 1,
+        letterSpacing: '0.02em',
+        marginBottom: '16px'
+      });
+      break;
+    case 6:
+      heading = _extends({}, heading, {
+        fontSize: '16px',
+        fontWeight: 400,
+        lineHeight: '24px',
+        letterSpacing: '0.04em',
+        marginBottom: '16px'
+      });
+      break;
+  }
+
+  return heading;
+};
+
+base.text = {
+  fontSize: '14p',
+  fontWeight: 400,
+  lineHeight: '24px',
+  letterSpacing: 0
+};
+
+base.link = {
+  color: colors.accent,
+  fontWeight: 500
+};
+
+base.blockquote = {
+  position: 'relative',
+  fontSize: '24px',
+  fontWeight: 300,
+  fontStyle: 'italic',
+  lineHeight: 1.35,
+  letterSpacing: '0.08em',
+
+  ':before': {
+    position: 'absolute',
+    left: '-0.5em',
+    content: '“'
+  },
+
+  ':after': {
+    content: '”',
+    marginLeft: '-0.05em'
+  }
+};
+
+base.mark = {
+  backgroundColor: '#f4ff81'
+};
+
+base.dt = {
+  fontWeight: 700
+};
+
+base.address = {
+  fontSize: '12px',
+  fontStyle: 'normal',
+  fontWeight: 400,
   lineHeight: 1,
-  letterSpacing: 0,
-  opacity: colorContrast ? 0.87 : 'inherit'
-});
+  letterSpacing: 0
+};
+
+base.list = {
+  fontSize: '14px',
+  fontWeight: 400,
+  lineHeight: '24px',
+  letterSpacing: 0
+};
 
 const shadow = (depth = 2) => {
   switch (depth) {
@@ -219,104 +335,110 @@ const focusShadow = () => ({
   boxShadow: '0 0 8px rgba(0, 0,0, 0.18), 0 8px 16px rgba(0, 0, 0, 0.36)'
 });
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+var _extends$1 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 const buttonComponent = {};
 
-buttonComponent.default = _extends({
+buttonComponent.default = {
   backgroundColor: 'transparent',
   border: 'none',
-  borderRadius: button$1.dimensions.borderRadius,
-  color: button$1.colors.secondaryColor,
-  position: 'relative',
-  height: button$1.dimensions.height,
+  borderRadius: button.dimensions.borderRadius,
+  color: button.colors.secondaryColor,
+  cursor: 'pointer',
+  display: 'inline-block',
+  fontFamily: typography.preferredFont,
+  fontSize: '14px',
+  fontWeight: 500,
+  height: button.dimensions.height,
+  lineHeight: button.dimensions.height,
+  letterSpacing: 0,
   margin: 0,
-  minWidth: button$1.dimensions.minWidth,
-  padding: `0 ${button$1.dimensions.padding}`,
-  display: 'inline-block'
-}, typoButton(), {
+  minWidth: button.dimensions.minWidth,
+  outline: 'none',
   overflow: 'hidden',
-  willChange: 'box-shadow',
+  padding: `0 ${button.dimensions.padding}`,
+  position: 'relative',
+  textAlign: 'center',
+  textDecoration: 'none',
+  textTransform: 'uppercase',
   transition: `box-shadow 0.2s ${animation.curveFastOutLinearIn},
                background-color 0.2s ${animation.curveFastOutLinearIn},
                color 0.2s ${animation.curveDefault}`,
-  outline: 'none',
-  cursor: 'pointer',
-  textDecoration: 'none',
-  textAlign: 'center',
-  lineHeight: button$1.dimensions.height,
   verticalAlign: 'middle',
+  willChange: 'box-shadow',
 
   '-moz-focus-inner': {
     border: 0
   }
-});
+};
 
-buttonComponent.flat = _extends({}, buttonComponent.default, {
+buttonComponent.flat = _extends$1({}, buttonComponent.default, {
   ':hover': {
-    backgroundColor: button$1.colors.hoverColor
+    backgroundColor: button.colors.hoverColor
   },
 
   ':focus:not(:active)': {
-    backgroundColor: button$1.colors.focusColor
+    backgroundColor: button.colors.focusColor
   },
 
   ':active': {
-    backgroundColor: button$1.colors.activeColor
+    backgroundColor: button.colors.activeColor
   }
 });
 
-buttonComponent.flatColored = _extends({}, buttonComponent.flat, {
-  color: button$1.colors.primaryColorAlt,
+buttonComponent.flatColored = _extends$1({}, buttonComponent.flat, {
+  color: button.colors.primaryColorAlt,
   ':focus:not(:active)': {
-    backgroundColor: button$1.colors.focusColorAlt
+    backgroundColor: button.colors.focusColorAlt
   }
 });
 
-buttonComponent.flatAccent = _extends({}, buttonComponent.flat, {
-  color: button$1.colors.fabColorAlt
+buttonComponent.flatAccent = _extends$1({}, buttonComponent.flat, {
+  color: button.colors.fabColorAlt
 });
 
-buttonComponent.raised = _extends({}, buttonComponent.default, {
-  backgroundColor: button$1.colors.primaryColor
+buttonComponent.raised = _extends$1({}, buttonComponent.default, {
+  backgroundColor: button.colors.primaryColor
 }, shadow(2), {
-  ':active': _extends({}, shadow(4), {
-    backgroundColor: button$1.colors.activeColor
+  ':active': _extends$1({}, shadow(4), {
+    backgroundColor: button.colors.activeColor
   }),
-  ':focus:not(:active)': _extends({}, focusShadow(), {
-    backgroundColor: button$1.colors.activeColor
+  ':focus:not(:active)': _extends$1({}, focusShadow(), {
+    backgroundColor: button.colors.activeColor
   })
 });
 
-buttonComponent.raisedColored = _extends({}, buttonComponent.raised, {
-  backgroundColor: button$1.colors.primaryColorAlt,
-  color: button$1.colors.secondaryColorAlt,
+buttonComponent.raisedColored = _extends$1({}, buttonComponent.raised, {
+  backgroundColor: button.colors.primaryColorAlt,
+  color: button.colors.secondaryColorAlt,
   ':hover': {
-    backgroundColor: button$1.colors.hoverColorAlt
+    backgroundColor: button.colors.hoverColorAlt
   },
-  ':active': _extends({}, shadow(4), {
-    backgroundColor: button$1.colors.activeColorAlt
+  ':active': _extends$1({}, shadow(4), {
+    backgroundColor: button.colors.activeColorAlt
   }),
-  ':focus:not(:active)': _extends({}, focusShadow(), {
-    backgroundColor: button$1.colors.activeColorAlt
+  ':focus:not(:active)': _extends$1({}, focusShadow(), {
+    backgroundColor: button.colors.activeColorAlt
   })
 });
 
-buttonComponent.raisedAccent = _extends({}, buttonComponent.raised, {
-  backgroundColor: button$1.colors.fabColorAlt,
-  color: button$1.colors.fabTextColorAlt,
+buttonComponent.raisedAccent = _extends$1({}, buttonComponent.raised, {
+  backgroundColor: button.colors.fabColorAlt,
+  color: button.colors.fabTextColorAlt,
   ':hover': {
-    backgroundColor: button$1.colors.fabHoverColorAlt
+    backgroundColor: button.colors.fabHoverColorAlt
   },
-  ':active': _extends({}, shadow(4), {
-    backgroundColor: button$1.colors.fabActiveColorAlt
+  ':active': _extends$1({}, shadow(4), {
+    backgroundColor: button.colors.fabActiveColorAlt
   }),
-  ':focus:not(:active)': _extends({}, focusShadow(), {
-    backgroundColor: button$1.colors.fabActiveColorAlt
+  ':focus:not(:active)': _extends$1({}, focusShadow(), {
+    backgroundColor: button.colors.fabActiveColorAlt
   })
 });
 
 const materialjs = {};
+
+materialjs.base = base;
 materialjs.button = buttonComponent;
 
 module.exports = materialjs;

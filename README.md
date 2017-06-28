@@ -6,24 +6,40 @@ It's roughly based on [Material Design Lite](https://getmdl.io/)
 
 ## Usage
 
+Make sure you include the Roboto font in your page.
+```html
+<link
+  href='http://fonts.googleapis.com/css?family=Roboto:400,400italic,500,500italic,700,700italic'
+  rel='stylesheet' type='text/css'
+>
+```
+
+Base functions and styles are available in the base component, i.e. `import { base } from 'materialjs'`.
+
+You may want to include a normalize css file first.
+
 ```JSX
 import React from 'react';
 import { StyleSheet, css } from 'aphrodite';
-import { button } from 'materialjs';
+import { base, button } from 'materialjs';
 
 const App = () => (
-<h1>
-  Hello, world!
-</h1>
+  <div className={css(styles.html)}>
+    <h1 className={css(styles.h1)}>
+      Hello, world!
+    </h1>
     <button className={css(styles.button)}>Button</button>
     <button className={css(styles.buttonColored)}>Button</button>
     <button className={css(styles.buttonAccent)}>Button</button>
     <button className={css(styles.raised)}>Button</button>
     <button className={css(styles.raisedColored)}>Button</button>
     <button className={css(styles.raisedAccent)}>Button</button>
+  </div>
 );
 
 const styles = StyleSheet.create({
+  html: { ...base.html },
+  h1: { ...base.heading(1) },
   button: { ...button.flat },
   buttonColored: { ...button.flatColored },
   buttonAccent: { ...button.flatAccent },

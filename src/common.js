@@ -1,15 +1,5 @@
 import { typography, shadows } from './variables';
 
-export const typoButton = (colorContrast = false, usePreferred = true) => ({
-  fontFamily: usePreferred ? typography.preferredFont : 'inherit',
-  fontSize: '14px',
-  fontWeight: 500,
-  textTransform: 'uppercase',
-  lineHeight: 1,
-  letterSpacing: 0,
-  opacity: colorContrast ? 0.87 : 'inherit',
-});
-
 export const shadow = (depth = 2) => {
   switch (depth) {
     case 2:
