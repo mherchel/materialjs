@@ -2,7 +2,7 @@
 
 This is a library that allows you to theme your components with material design when using a CSS in JS solution like [Aphrodite](https://github.com/Khan/aphrodite).
 
-It's roughly based on []Material Design Lite](https://getmdl.io/)
+It's roughly based on [Material Design Lite](https://getmdl.io/)
 
 ## Usage
 
