@@ -59,4 +59,4 @@ Tasks towards feature completion can be found on the [MVP project board](https:/
 
 This project follows the [Contributor Covenant Code of Conduct](http://contributor-covenant.org/version/1/4/)
 
-Plase follow the [karma commit style](http://karma-runner.github.io/0.10/dev/git-commit-msg.html)
+Please follow the [karma commit style](http://karma-runner.github.io/0.10/dev/git-commit-msg.html)
