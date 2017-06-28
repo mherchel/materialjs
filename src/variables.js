@@ -5,7 +5,7 @@ export const colors = {
   primaryDark: indigo[700],
   accent: pink.A200,
   primaryContrast: white,
-  accentContrast: black,
+  accentContrast: white,
 };
 
 export const animation = {

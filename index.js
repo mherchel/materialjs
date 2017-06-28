@@ -85,7 +85,7 @@ const colors = {
   primaryDark: indigo[700],
   accent: pink.A200,
   primaryContrast: white,
-  accentContrast: black
+  accentContrast: white
 };
 
 const animation = {
@@ -221,50 +221,63 @@ const focusShadow = () => ({
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-const buttonComponent = {
-  flat: _extends({
-    backgroundColor: 'transparent',
-    border: 'none',
-    borderRadius: button$1.dimensions.borderRadius,
-    color: button$1.colors.secondaryColor,
-    position: 'relative',
-    height: button$1.dimensions.height,
-    margin: 0,
-    minWidth: button$1.dimensions.minWidth,
-    padding: `0 ${button$1.dimensions.padding}`,
-    display: 'inline-block'
-  }, typoButton(), {
-    overflow: 'hidden',
-    willChange: 'box-shadow',
-    transition: `box-shadow 0.2s ${animation.curveFastOutLinearIn},
+const buttonComponent = {};
+
+buttonComponent.default = _extends({
+  backgroundColor: 'transparent',
+  border: 'none',
+  borderRadius: button$1.dimensions.borderRadius,
+  color: button$1.colors.secondaryColor,
+  position: 'relative',
+  height: button$1.dimensions.height,
+  margin: 0,
+  minWidth: button$1.dimensions.minWidth,
+  padding: `0 ${button$1.dimensions.padding}`,
+  display: 'inline-block'
+}, typoButton(), {
+  overflow: 'hidden',
+  willChange: 'box-shadow',
+  transition: `box-shadow 0.2s ${animation.curveFastOutLinearIn},
                background-color 0.2s ${animation.curveFastOutLinearIn},
                color 0.2s ${animation.curveDefault}`,
-    outline: 'none',
-    cursor: 'pointer',
-    textDecoration: 'none',
-    textAlign: 'center',
-    lineHeight: button$1.dimensions.height,
-    verticalAlign: 'middle',
+  outline: 'none',
+  cursor: 'pointer',
+  textDecoration: 'none',
+  textAlign: 'center',
+  lineHeight: button$1.dimensions.height,
+  verticalAlign: 'middle',
 
-    '-moz-focus-inner': {
-      border: 0
-    },
+  '-moz-focus-inner': {
+    border: 0
+  }
+});
 
-    ':hover': {
-      backgroundColor: button$1.colors.hoverColor
-    },
+buttonComponent.flat = _extends({}, buttonComponent.default, {
+  ':hover': {
+    backgroundColor: button$1.colors.hoverColor
+  },
 
-    ':focus:not(:active)': {
-      backgroundColor: button$1.colors.focusColor
-    },
+  ':focus:not(:active)': {
+    backgroundColor: button$1.colors.focusColor
+  },
 
-    ':active': {
-      backgroundColor: button$1.colors.activeColor
-    }
-  })
-};
+  ':active': {
+    backgroundColor: button$1.colors.activeColor
+  }
+});
 
-buttonComponent.raised = _extends({}, buttonComponent.flat, {
+buttonComponent.flatColored = _extends({}, buttonComponent.flat, {
+  color: button$1.colors.primaryColorAlt,
+  ':focus:not(:active)': {
+    backgroundColor: button$1.colors.focusColorAlt
+  }
+});
+
+buttonComponent.flatAccent = _extends({}, buttonComponent.flat, {
+  color: button$1.colors.fabColorAlt
+});
+
+buttonComponent.raised = _extends({}, buttonComponent.default, {
   backgroundColor: button$1.colors.primaryColor
 }, shadow(2), {
   ':active': _extends({}, shadow(4), {
@@ -272,6 +285,34 @@ buttonComponent.raised = _extends({}, buttonComponent.flat, {
   }),
   ':focus:not(:active)': _extends({}, focusShadow(), {
     backgroundColor: button$1.colors.activeColor
+  })
+});
+
+buttonComponent.raisedColored = _extends({}, buttonComponent.raised, {
+  backgroundColor: button$1.colors.primaryColorAlt,
+  color: button$1.colors.secondaryColorAlt,
+  ':hover': {
+    backgroundColor: button$1.colors.hoverColorAlt
+  },
+  ':active': _extends({}, shadow(4), {
+    backgroundColor: button$1.colors.activeColorAlt
+  }),
+  ':focus:not(:active)': _extends({}, focusShadow(), {
+    backgroundColor: button$1.colors.activeColorAlt
+  })
+});
+
+buttonComponent.raisedAccent = _extends({}, buttonComponent.raised, {
+  backgroundColor: button$1.colors.fabColorAlt,
+  color: button$1.colors.fabTextColorAlt,
+  ':hover': {
+    backgroundColor: button$1.colors.fabHoverColorAlt
+  },
+  ':active': _extends({}, shadow(4), {
+    backgroundColor: button$1.colors.fabActiveColorAlt
+  }),
+  ':focus:not(:active)': _extends({}, focusShadow(), {
+    backgroundColor: button$1.colors.fabActiveColorAlt
   })
 });
 

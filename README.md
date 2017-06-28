@@ -15,14 +15,24 @@ const App = () => (
 <h1>
   Hello, world!
 </h1>
-<button className={css(styles.button)}>Button</button>
-<button className={css(styles.raised)}>Button</button>
+    <button className={css(styles.button)}>Button</button>
+    <button className={css(styles.buttonColored)}>Button</button>
+    <button className={css(styles.buttonAccent)}>Button</button>
+    <button className={css(styles.raised)}>Button</button>
+    <button className={css(styles.raisedColored)}>Button</button>
+    <button className={css(styles.raisedAccent)}>Button</button>
 );
 
 const styles = StyleSheet.create({
   button: { ...button.flat },
-  raised: { ...button.raised }
+  buttonColored: { ...button.flatColored },
+  buttonAccent: { ...button.flatAccent },
+  raised: { ...button.raised },
+  raisedColored: { ...button.raisedColored },
+  raisedAccent: { ...button.raisedAccent },
 });
 
 export default App;
 ```
+
+![Material Buttons](http://i.imgur.com/YBNknKH.png)
